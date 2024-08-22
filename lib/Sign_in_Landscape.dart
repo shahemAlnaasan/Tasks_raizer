@@ -13,13 +13,6 @@ class SignInLandscape extends StatefulWidget {
 
 class _SignInLandscapeState extends State<SignInLandscape> {
   @override
-  void dispose() {
-    SignInController.usernameController.dispose();
-    SignInController.passwordController.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -36,6 +29,7 @@ class _SignInLandscapeState extends State<SignInLandscape> {
                   if (val == "") {
                     return "You must enter a vaild email ";
                   }
+                  return null;
                 },
                 hintText: 'Username',
                 prefixIcon: const Icon(Icons.email_rounded),
@@ -52,6 +46,7 @@ class _SignInLandscapeState extends State<SignInLandscape> {
                   if (val == "") {
                     return "You must enter a vaild password ";
                   }
+                  return null;
                 },
                 hintText: 'Password',
                 prefixIcon: const Icon(Icons.lock),
