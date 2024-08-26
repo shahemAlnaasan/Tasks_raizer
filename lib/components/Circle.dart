@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class circle extends StatelessWidget {
+class Circle extends StatelessWidget {
   final double width;
   final double height;
   final Widget? child;
   final Color? color;
 
-  const circle({
+  const Circle({
     super.key,
     required this.height,
     required this.width,

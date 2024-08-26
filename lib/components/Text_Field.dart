@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
-class textField extends StatelessWidget {
+class CustomtextField extends StatelessWidget {
   final String hintText;
   final Widget prefixIcon;
   final String? Function(String?)? validator;
   final TextEditingController controller;
 
-  const textField(
+  const CustomtextField(
       {super.key,
       required this.hintText,
       required this.prefixIcon,

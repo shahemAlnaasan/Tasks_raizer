@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_builder/responsive_builder.dart';
-import 'package:task_one/Sign_in_Landscape.dart';
-import 'package:task_one/components/Circle.dart';
-import 'package:task_one/components/CustomButton.dart';
-import 'package:task_one/components/Text_Field.dart';
-import 'package:task_one/controller/Sign_In_controller.dart';
+import 'package:task_one/sign-in_landscape.dart';
+import 'package:task_one/components/circle.dart';
+import 'package:task_one/components/custom_button.dart';
+import 'package:task_one/components/text_field.dart';
+import 'package:task_one/controller/sign_in_controller.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -43,7 +43,7 @@ class _SignInPageState extends State<SignInPage> {
                   Positioned(
                       left: -20.screenWidth,
                       top: -15.sh,
-                      child: circle(
+                      child: Circle(
                         height: 31.screenHeight,
                         width: 62.screenWidth,
                       )),
@@ -52,7 +52,7 @@ class _SignInPageState extends State<SignInPage> {
                   Positioned(
                       right: -20.screenWidth,
                       top: 12.sh,
-                      child: circle(
+                      child: Circle(
                         width: 33.screenWidth,
                         height: 12.screenHeight,
                       )),
@@ -63,7 +63,7 @@ class _SignInPageState extends State<SignInPage> {
                     right: 1.5.screenWidth,
                     bottom:
                         orientation == Orientation.portrait ? -10.sh : -14.sh,
-                    child: circle(
+                    child: Circle(
                       width: 33.screenWidth,
                       height: 19.screenHeight,
                       color: Colors.grey[300],
@@ -111,11 +111,12 @@ class _SignInPageState extends State<SignInPage> {
                                 SizedBox(height: 2.screenHeight),
 
                                 //Username TextField
-                                textField(
+                                CustomtextField(
                                   validator: (val) {
                                     if (val == "") {
                                       return "You must enter a vaild email ";
                                     }
+                                    return null;
                                   },
                                   hintText: 'Username',
                                   prefixIcon: const Icon(Icons.email_rounded),
@@ -126,11 +127,12 @@ class _SignInPageState extends State<SignInPage> {
                                 SizedBox(height: 2.screenHeight),
 
                                 //Password TextField
-                                textField(
+                                CustomtextField(
                                   validator: (val) {
                                     if (val == "") {
                                       return "You must enter a vaild password ";
                                     }
+                                    return null;
                                   },
                                   hintText: 'Password',
                                   prefixIcon: const Icon(Icons.lock),
