@@ -4,8 +4,8 @@ import 'package:responsive_builder/responsive_builder.dart';
 class CustomButton extends StatelessWidget {
   final String title;
   final Color? color;
-  Function()? onTap;
-  CustomButton({super.key, required this.title, this.color, this.onTap});
+  final Function()? onTap;
+  const CustomButton({super.key, required this.title, this.color, this.onTap});
 
   @override
   Widget build(BuildContext context) {

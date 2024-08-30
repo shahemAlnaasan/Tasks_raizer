@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:task_one/components/custom_button.dart';
 import 'package:task_one/components/text_field.dart';
 import 'package:task_one/controller/sign_in_controller.dart';
+
+// comment This import if you want to use Cubit
+import 'package:task_one/bloc/login_button_bloc.dart';
+
+// comment This import if you want to use BloC
+// import 'package:task_one/cubit/login_button_cubit.dart';
 
 class SignInLandscape extends StatefulWidget {
   const SignInLandscape({super.key});
@@ -63,24 +70,57 @@ class _SignInLandscapeState extends State<SignInLandscape> {
               ),
             ),
             SizedBox(height: 2.screenHeight),
-            SignInController.isButtonStill
-                ? CustomButton(
+
+            // BlocBuilder<LoginButtonCubit, LoginButtonState>(
+            //                       builder: (context, state) {
+            //                         if (state is ButtonState) {
+            //                           return CustomButton(
+            //                             onTap: () {
+            //                               if (SignInController
+            //                                   .formState.currentState!
+            //                                   .validate()) {
+            //                                 context
+            //                                     .read<LoginButtonCubit>()
+            //                                     .showUserInfo();
+            //                               }
+            //                             },
+            //                             title: "LOGIN",
+            //                           );
+            //                         } else if (state is UserInfoState) {
+            //                           return Column(
+            //                             children: [
+            //                               Text("UserName: ${state.userName}"),
+            //                               Text("Password: ${state.password}"),
+            //                             ],
+            //                           );
+            //                         } else {
+            //                           return const SizedBox();
+            //                         }
+            //                       },
+            //                     )
+            BlocBuilder<LoginButtonBloc, LoginButtonState>(
+              builder: (context, state) {
+                if (state is ButtonState) {
+                  return CustomButton(
                     onTap: () {
                       if (SignInController.formState.currentState!.validate()) {
-                        SignInController.removeButton();
-                        setState(() {});
+                        context.read<LoginButtonBloc>().add(ShowUSerInfo());
                       }
                     },
                     title: "LOGIN",
-                  )
-                : Column(children: [
-                    Text(
-                        "Username: ${SignInController.usernameController.text}",
-                        style: Theme.of(context).textTheme.bodyMedium),
-                    Text(
-                        "Password: ${SignInController.passwordController.text}",
-                        style: Theme.of(context).textTheme.bodyMedium)
-                  ])
+                  );
+                } else if (state is UserInfoState) {
+                  return Column(
+                    children: [
+                      Text("UserName: ${state.userName}"),
+                      Text("Password: ${state.password}"),
+                    ],
+                  );
+                } else {
+                  return const SizedBox();
+                }
+              },
+            )
           ],
         ),
         Column(
